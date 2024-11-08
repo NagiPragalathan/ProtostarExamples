@@ -7,17 +7,29 @@ const ChatContext = createContext();
 export const ChatProvider = ({ children }) => {
   const chat = async (message) => {
     setLoading(true);
-    const data = await fetch(`${backendUrl}/chat`, {
+  
+    // Check if the message contains "@user" to determine which URL to use
+    const url = message.includes("@user")
+      ? "https://virtual-gf-py.vercel.app/sofi/chat"
+      : `${backendUrl}/chat`;
+      console.log(url);
+    const data = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ message }),
     });
+  
     const resp = (await data.json()).messages;
+    console.log("==============");
+    console.log(data);
+    console.log(resp);
+    console.log("==============");
     setMessages((messages) => [...messages, ...resp]);
     setLoading(false);
   };
+  
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState();
   const [loading, setLoading] = useState(false);
