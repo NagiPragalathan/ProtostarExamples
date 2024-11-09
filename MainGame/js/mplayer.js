@@ -156,15 +156,10 @@ Player.prototype.onMouseEvent = function( x, y, type, rmb ) {
             console.log("Click within block action area, block action prevented");
             return;
         }
-        // if (Math.floor(this.pos.x) === 72 && Math.floor(this.pos.y)=== 89 && Math.floor(this.pos.z) === 16) {
-        //     return;
-        // }
-        // if (Math.floor(this.pos.x) === 94 && Math.floor(this.pos.y)=== 92 && Math.floor(this.pos.z) === 16) {
-        //     return;
-        // }
-        // if (Math.floor(this.pos.x) === 94 && Math.floor(this.pos.y)=== 79 && Math.floor(this.pos.z) === 16) {
-        //     return;
-        // }
+        if(Math.floor(this.pos.x) > 73 && Math.floor(this.pos.x) < 95 && Math.floor(this.pos.y) > 139 && Math.floor(this.pos.y) < 161){
+            console.log("Click within block action area, block action prevented");
+            return;
+        }
     
         this.doBlockAction(x, y, !rmb);
         console.log("Working in condition");
@@ -276,8 +271,7 @@ Player.prototype.update = function() {
         }
 
         // Check if player's position meets the condition for popup
-        if (this.pos.x >= 100 && this.pos.x <= 110 && this.pos.y >= 80 && this.pos.y <= 88 && this.pos.z === 16 ) {
-
+        if (this.pos.x >= 83 && this.pos.x <= 87 && this.pos.y >= 150 && this.pos.y <= 155 && this.pos.z === 16 ) {
             // Show the popup only once
             if (!isPopupShown) {
                 const iframePopup = document.getElementById('iframePopup');
@@ -289,7 +283,7 @@ Player.prototype.update = function() {
             isPopupShown = false;
         }
 
-        // console.log("x :",this.pos.x,"y : ", this.pos.y, "z :", this.pos.z)
+        console.log("x :",this.pos.x,"y : ", this.pos.y, "z :", this.pos.z)
         // console.log(Math.floor(this.pos.x), Math.floor(this.pos.y), Math.floor(this.pos.z))
         
             
